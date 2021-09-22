@@ -5,12 +5,11 @@ import numpy as np
 from keras.layers import Dense,Dropout, GlobalAveragePooling2D,Conv2D,MaxPooling2D
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Model
-from keras.optimizers import Adam
 import os
 from keras.callbacks import ModelCheckpoint
 import json
 from keras import regularizers
-
+from tensorflow import keras
 
 train_datagen = ImageDataGenerator(preprocessing_function=preprocess_input)
 
@@ -46,7 +45,7 @@ model = Model(inputs=base_model.input, outputs=preds)
 print(len(model.layers))
 print(model.summary())
 
-# mengatur parameter yang tidak akan diubah (freeze) dan dibuah (unfreeze)
+# mengatur parameter yang tidak akan diubah (freeze) dan diubah (unfreeze)
 n_freeze = 300
 
 for layer in model.layers[:n_freeze]:
@@ -55,8 +54,12 @@ for layer in model.layers[:n_freeze]:
 for layer in model.layers[n_freeze:]:
     layer.trainable=True
 
+    
 
-model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+opt = keras.optimizers.Adam(learning_rate=0.01)    
+
+model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=['accuracy'])
 
 
 # menyimapan model terbaik sebagai model baru 
