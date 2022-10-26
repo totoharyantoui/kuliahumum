@@ -11,7 +11,11 @@ this_repo_url = 'https://github.com/lexfridman/mit-deep-learning/raw/master/'
 this_tutorial_url = this_repo_url + 'tutorial_deep_learning_basics'
 
 # Membagi dataset menjadi data latih dan data uji
-(train_images, train_labels),(test_images, test_labels) = keras.datasets.mnist.load_data()
+# Update cara untuk mengakses data 
+import tensorflow.keras as tk
+mnist = tk.datasets.mnist
+#(train_images, train_labels),(test_images, test_labels) = keras.datasets.mnist.load_data()
+(train_images, train_labels),(test_images, test_labels) = mnist.load_data()
 
 
 # reshape images to specify that it's a single channel (greyscale)
