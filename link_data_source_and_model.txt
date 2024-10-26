@@ -1,3 +1,4 @@
 Source code : ipb.link/code
 Model : ipb.link/model
-Data* : ipb.link/covid-dataset
+Data Cita : ipb.link/covid-dataset
+Data Tabel : https://ipb.link/protein-sec
